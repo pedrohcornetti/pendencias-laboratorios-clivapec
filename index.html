@@ -245,50 +245,82 @@
     border-color:var(--blue);
   }
   .stat.rebate-total .stat-num,.stat.rebate-total .stat-lbl{color:#fff;}
-  .stat.rebate-total .stat-num{font-size:26px;}
+  .stat.rebate-total .stat-num{font-size:22px;}
   .stat.rebate-total .stat-ico{background:rgba(255,255,255,.18);}
-  .panel{
+
+  .lab-card{
     background:var(--card);border:1px solid var(--border);border-radius:12px;
-    box-shadow:var(--shadow);margin-bottom:16px;overflow:hidden;
+    box-shadow:var(--shadow);margin-bottom:12px;overflow:hidden;
+    border-left:5px solid var(--blue-2);
   }
-  .panel-head{
-    padding:11px 16px;border-bottom:1px solid var(--border);
-    font-weight:700;font-size:13px;color:var(--blue);background:#fbfcfb;
+  .lab-card.quitado{border-left-color:#16a34a;}
+  .lab-head{display:flex;align-items:center;gap:11px;padding:13px 16px 11px;flex-wrap:wrap;}
+  .lab-name{font-weight:700;font-size:15px;flex:1;min-width:160px;}
+  .lab-actions{display:flex;gap:7px;}
+  .lab-figs{display:flex;gap:10px;flex-wrap:wrap;padding:0 16px 12px;}
+  .lab-fig{
+    background:#f5f8fc;border:1px solid var(--border);border-radius:9px;
+    padding:8px 13px;min-width:120px;flex:1;
   }
-  .brk-row{
-    display:flex;align-items:center;gap:12px;padding:9px 16px;
-    border-bottom:1px solid #f1f3f1;font-size:13px;
+  .lab-fig .k{font-size:10.5px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.4px;}
+  .lab-fig .v{font-size:15px;font-weight:800;margin-top:2px;}
+  .lab-fig .v.muted{color:var(--muted);font-weight:600;font-size:12.5px;}
+  .lab-fig.esperado{background:var(--blue);border-color:var(--blue);}
+  .lab-fig.esperado .k{color:rgba(255,255,255,.82);}
+  .lab-fig.esperado .v{color:#fff;}
+  .lab-fig.recebido .v{color:#15803d;}
+  .lab-fig.falta .v{color:var(--amber);}
+  .lab-fig.falta.zero .v{color:#15803d;}
+
+  .lab-prog{padding:0 16px 12px;}
+  .lab-prog-bar{height:9px;border-radius:6px;background:#eaeef4;overflow:hidden;}
+  .lab-prog-bar > div{height:100%;background:#16a34a;border-radius:6px;transition:width .35s ease;}
+  .lab-prog-bar > div.over{background:var(--blue-2);}
+  .lab-prog-info{display:flex;justify-content:space-between;font-size:11.5px;color:var(--muted);margin-top:5px;font-weight:600;}
+  .lab-prog-info .ok{color:#15803d;font-weight:700;}
+  .lab-obs{padding:0 16px 12px;}
+  .lab-obs > div{
+    font-size:12.5px;color:#4b5563;background:#f7f8f7;border-radius:7px;
+    padding:7px 9px;white-space:pre-wrap;word-break:break-word;
   }
-  .brk-row:last-child{border-bottom:none;}
-  .brk-name{flex:1;font-weight:600;min-width:0;}
-  .brk-count{font-size:11px;color:var(--muted);background:#f1f3f1;border-radius:20px;padding:2px 9px;white-space:nowrap;}
-  .brk-val{font-weight:800;white-space:nowrap;}
-  .brk-val.pos{color:var(--blue-2);}
-  .brk-val.neg{color:var(--red);}
-  .reb-row{
-    display:flex;align-items:center;gap:13px;background:#fff;
-    border:1px solid var(--border);border-left:5px solid var(--blue-2);
-    border-radius:10px;padding:11px 14px;margin-bottom:9px;transition:box-shadow .12s;
+
+  .lab-receb{border-top:1px solid var(--border);background:#fbfcfd;padding:11px 16px 13px;}
+  .lab-receb-head{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:8px;flex-wrap:wrap;}
+  .lab-receb-head > span{font-size:12px;font-weight:700;color:var(--blue);}
+  .lab-receb-item{
+    display:flex;align-items:center;gap:10px;background:#fff;border:1px solid var(--border);
+    border-radius:8px;padding:7px 11px;margin-bottom:6px;font-size:12.5px;
   }
-  .reb-row:hover{box-shadow:var(--shadow);}
-  .reb-row.saida{border-left-color:var(--red);}
-  .reb-ico{
-    width:38px;height:38px;border-radius:9px;flex-shrink:0;font-size:20px;font-weight:800;
-    display:flex;align-items:center;justify-content:center;
+  .lab-receb-item:last-child{margin-bottom:0;}
+  .lab-receb-date{color:var(--muted);white-space:nowrap;}
+  .lab-receb-val{font-weight:800;color:#15803d;white-space:nowrap;}
+  .lab-receb-obs{flex:1;min-width:0;color:#4b5563;word-break:break-word;}
+  .lab-receb-empty{font-size:12px;color:var(--muted);font-style:italic;padding:3px 0;}
+
+  .lab-summary{display:flex;flex-wrap:wrap;gap:6px 18px;padding:0 16px 12px;}
+  .lab-sum{font-size:12.5px;color:var(--muted);}
+  .lab-sum b{color:var(--text);font-weight:800;font-size:13.5px;}
+  .lab-sum.green b{color:#15803d;}
+  .lab-sum.amber b{color:var(--amber);}
+  .lab-sum.muted{font-style:italic;}
+  .meta-list{padding:0 12px;}
+  .meta-block{
+    background:#fcfdfe;border:1px solid var(--border);border-radius:10px;
+    border-left:4px solid var(--blue-3);margin-bottom:10px;overflow:hidden;
   }
-  .reb-row.entrada .reb-ico{background:#e7eef8;color:var(--blue-2);}
-  .reb-row.saida .reb-ico{background:var(--red-soft);color:var(--red);}
-  .reb-main{flex:1;min-width:0;}
-  .reb-l1{display:flex;align-items:center;gap:9px;flex-wrap:wrap;}
-  .reb-lab{font-weight:700;font-size:13.5px;}
-  .reb-tag{font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.4px;padding:2px 7px;border-radius:5px;}
-  .reb-tag.entrada{background:#e7eef8;color:var(--blue-2);}
-  .reb-tag.saida{background:var(--red-soft);color:var(--red);}
-  .reb-date{font-size:11.5px;color:var(--muted);}
-  .reb-obs{font-size:12.5px;color:#4b5563;margin-top:4px;white-space:pre-wrap;word-break:break-word;}
-  .reb-val{font-size:16px;font-weight:800;white-space:nowrap;flex-shrink:0;}
-  .reb-val.pos{color:var(--blue-2);}
-  .reb-val.neg{color:var(--red);}
+  .meta-block.quitado{border-left-color:#16a34a;}
+  .meta-head{
+    display:flex;align-items:center;gap:9px;flex-wrap:wrap;
+    padding:9px 13px;background:#f2f6fb;border-bottom:1px solid var(--border);
+  }
+  .meta-period{font-weight:700;font-size:12.5px;color:var(--blue);}
+  .meta-tag{font-size:11.5px;color:var(--muted);background:#fff;border:1px solid var(--border);border-radius:20px;padding:2px 10px;}
+  .meta-actions{margin-left:auto;display:flex;gap:6px;}
+  .meta-block .lab-figs{padding:11px 13px 10px;}
+  .meta-block .lab-prog{padding:0 13px 11px;}
+  .meta-block .lab-receb{padding:10px 13px 12px;}
+  .meta-block .lab-obs{padding:0 13px 10px;}
+  .lab-addmeta{padding:2px 16px 14px;}
 
   /* ---------- MODAL ---------- */
   .overlay{
@@ -517,21 +549,15 @@
     <div class="stats" id="rebateStats"></div>
     <div class="toolbar">
       <div class="toolbar-row">
-        <button class="btn btn-primary" id="btnAddRebate">
+        <button class="btn btn-primary" id="btnAddLab">
           <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
-          Nova Movimentação
+          Cadastrar Laboratório
         </button>
-        <div class="field-mini">
-          <label>Laboratório</label>
-          <select class="mini" id="rfLab"><option value="Todos">Todos os laboratórios</option></select>
-        </div>
-        <div class="field-mini">
-          <label>Tipo</label>
-          <select class="mini" id="rfTipo">
-            <option value="Todos">Todos</option>
-            <option value="entrada">Acréscimo</option>
-            <option value="saida">Remoção</option>
-          </select>
+        <div class="search" style="max-width:340px;">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+            <circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/>
+          </svg>
+          <input type="text" id="rebSearch" placeholder="Pesquisar laboratório...">
         </div>
         <button class="btn btn-amber" id="btnExportRebate" style="margin-left:auto;">
           <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="M7 10l5 5 5-5"/><path d="M12 15V3"/></svg>
@@ -539,7 +565,6 @@
         </button>
       </div>
     </div>
-    <div id="rebateBreakdown"></div>
     <div class="list-info" id="rebateInfo"></div>
     <div id="rebateList"></div>
   </div>
@@ -618,10 +643,11 @@
 <div class="overlay" id="ovSup">
   <div class="modal sm">
     <div class="modal-head">
-      <h3>Adicionar Fornecedor</h3>
+      <h3 id="supModalTitle">Adicionar Fornecedor</h3>
       <button class="modal-close" data-close="ovSup">&times;</button>
     </div>
     <div class="modal-body">
+      <input type="hidden" id="sId">
       <div class="field">
         <label>Nome do fornecedor <span class="req">*</span></label>
         <input type="text" id="sNome" placeholder="Razão social do laboratório / fornecedor">
@@ -634,7 +660,7 @@
           <option value="C">Classe C — Eventual</option>
         </select>
       </div>
-      <span class="hint">O novo fornecedor será adicionado ao final da lista.</span>
+      <span class="hint" id="supModalHint">O novo fornecedor será adicionado ao final da lista.</span>
     </div>
     <div class="modal-foot">
       <button class="btn btn-ghost" data-close="ovSup">Cancelar</button>
@@ -643,42 +669,105 @@
   </div>
 </div>
 
-<!-- MODAL REBATE -->
-<div class="overlay" id="ovRebate">
+<!-- MODAL CADASTRAR / EDITAR LABORATÓRIO DE REBATE -->
+<div class="overlay" id="ovLab">
   <div class="modal sm">
     <div class="modal-head">
-      <h3>Nova Movimentação de Rebate</h3>
-      <button class="modal-close" data-close="ovRebate">&times;</button>
+      <h3 id="labModalTitle">Cadastrar Laboratório de Rebate</h3>
+      <button class="modal-close" data-close="ovLab">&times;</button>
     </div>
     <div class="modal-body">
-      <div class="field">
-        <label>Tipo de movimentação <span class="req">*</span></label>
-        <select id="rTipo">
-          <option value="entrada">➕ Acréscimo — somar ao rebate</option>
-          <option value="saida">➖ Remoção — descontar do rebate</option>
-        </select>
+      <input type="hidden" id="lId">
+      <div class="field" id="lLabField">
+        <label>Laboratório <span class="req">*</span></label>
+        <select id="lLab"></select>
       </div>
+      <div class="sup-context" id="lLabContext" style="display:none;"></div>
       <div class="field">
-        <label>Laboratório associado <span class="req">*</span></label>
-        <select id="rLab"></select>
+        <label>Observação</label>
+        <textarea id="lObs" placeholder="Ex.: Contato comercial, condições gerais do acordo..."></textarea>
       </div>
+      <span class="hint">💡 Após cadastrar, use <b>"+ Novo período / meta"</b> dentro do laboratório para definir o período (início e fim), a % e a compra de cada meta de rebate.</span>
+    </div>
+    <div class="modal-foot">
+      <button class="btn btn-ghost" data-close="ovLab">Cancelar</button>
+      <button class="btn btn-primary" id="btnSaveLab">Salvar</button>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL PERÍODO / META -->
+<div class="overlay" id="ovMeta">
+  <div class="modal sm">
+    <div class="modal-head">
+      <h3 id="metaModalTitle">Novo Período / Meta</h3>
+      <button class="modal-close" data-close="ovMeta">&times;</button>
+    </div>
+    <div class="modal-body">
+      <input type="hidden" id="mLabId"><input type="hidden" id="mId">
+      <div class="sup-context" id="mLabContext"></div>
+      <div class="form-grid">
+        <div class="field">
+          <label>Início do período</label>
+          <input type="date" id="mInicio">
+        </div>
+        <div class="field">
+          <label>Fim do período</label>
+          <input type="date" id="mFim">
+        </div>
+        <div class="field">
+          <label>% de rebate</label>
+          <input type="text" id="mPerc" inputmode="decimal" placeholder="Ex.: 3,5">
+          <span class="hint">Opcional</span>
+        </div>
+        <div class="field">
+          <label>Compra no período (R$)</label>
+          <input type="text" id="mCompra" inputmode="decimal" placeholder="Ex.: 100.000,00">
+          <span class="hint">Opcional</span>
+        </div>
+        <div class="field full">
+          <label>Observação</label>
+          <textarea id="mObs" placeholder="Ex.: Meta trimestral Elanco — jan a mar/2026"></textarea>
+        </div>
+        <div class="field full">
+          <span class="hint">💡 Meta de rebate = <b>Compra no período × %</b>. Todos os campos são opcionais — preencha o que tiver agora.</span>
+        </div>
+      </div>
+    </div>
+    <div class="modal-foot">
+      <button class="btn btn-ghost" data-close="ovMeta">Cancelar</button>
+      <button class="btn btn-primary" id="btnSaveMeta">Salvar Período</button>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL REGISTRAR RECEBIMENTO -->
+<div class="overlay" id="ovReceb">
+  <div class="modal sm">
+    <div class="modal-head">
+      <h3>Registrar Recebimento de Rebate</h3>
+      <button class="modal-close" data-close="ovReceb">&times;</button>
+    </div>
+    <div class="modal-body">
+      <input type="hidden" id="cLabId"><input type="hidden" id="cMetaId">
+      <div class="sup-context" id="cLabContext"></div>
       <div class="field">
-        <label>Valor (R$) <span class="req">*</span></label>
-        <input type="text" id="rValor" inputmode="decimal" placeholder="0,00">
+        <label>Valor recebido (R$) <span class="req">*</span></label>
+        <input type="text" id="cValor" inputmode="decimal" placeholder="0,00">
         <span class="hint">Use vírgula para os centavos. Ex.: 1.250,00</span>
       </div>
       <div class="field">
         <label>Data</label>
-        <input type="date" id="rData">
+        <input type="date" id="cData">
       </div>
       <div class="field">
         <label>Observação</label>
-        <textarea id="rObs" placeholder="Ex.: Acerto de preço da Nota Fiscal 12345"></textarea>
+        <textarea id="cObs" placeholder="Ex.: Crédito referente à Nota Fiscal 12345"></textarea>
       </div>
     </div>
     <div class="modal-foot">
-      <button class="btn btn-ghost" data-close="ovRebate">Cancelar</button>
-      <button class="btn btn-primary" id="btnSaveRebate">Salvar Movimentação</button>
+      <button class="btn btn-ghost" data-close="ovReceb">Cancelar</button>
+      <button class="btn btn-primary" id="btnSaveReceb">Salvar Recebimento</button>
     </div>
   </div>
 </div>
@@ -861,7 +950,7 @@ const ui = {
   search:"", classe:"Todos",
   status:"Todos", tipo:"Todos", prio:"Todos", venc:false, sort:"criacao",
   expanded:new Set(),
-  rebLab:"Todos", rebTipo:"Todos"
+  rebSearch:""
 };
 
 /* ============ HELPERS ============ */
@@ -926,13 +1015,35 @@ function load(){
       const d=JSON.parse(raw);
       if(d && Array.isArray(d.fornecedores)){
         state=d;
-        if(!Array.isArray(state.rebates)) state.rebates=[];
+        if(!Array.isArray(state.rebateLabs)) state.rebateLabs=[];
+        if("rebates" in state) delete state.rebates;
+        migrateRebateLabs();
         return;
       }
     }catch(e){ console.error("Dados corrompidos, recriando lista padrão.",e); }
   }
   state = buildSeed();
   save();
+}
+function migrateRebateLabs(){
+  // Converte laboratórios do modelo antigo (% e compra direto no lab) para o novo modelo de períodos/metas.
+  (state.rebateLabs||[]).forEach(function(lab){
+    if(!Array.isArray(lab.metas)){
+      lab.metas=[];
+      const temValores = lab.percentual!=null || lab.compraPeriodo!=null ||
+                         (Array.isArray(lab.recebimentos) && lab.recebimentos.length>0);
+      if(temValores){
+        lab.metas.push({
+          id:uid(), inicio:"", fim:"",
+          percentual: lab.percentual!=null?lab.percentual:null,
+          compraPeriodo: lab.compraPeriodo!=null?lab.compraPeriodo:null,
+          observacao:"", recebimentos: Array.isArray(lab.recebimentos)?lab.recebimentos:[],
+          criadoEm: lab.criadoEm||new Date().toISOString()
+        });
+      }
+    }
+    delete lab.percentual; delete lab.compraPeriodo; delete lab.recebimentos;
+  });
 }
 function buildSeed(){
   const arr=[]; let ordem=1;
@@ -941,7 +1052,7 @@ function buildSeed(){
       arr.push({id:uid(),nome:nome,classe:cls,ordem:ordem++,pendencias:[]});
     });
   });
-  return {fornecedores:arr,rebates:[]};
+  return {fornecedores:arr,rebateLabs:[]};
 }
 
 /* ============ TOAST ============ */
@@ -1100,6 +1211,7 @@ function renderSuppliers(){
             ${vencidas?`<span class="pill venc-c">${vencidas} vencida${vencidas===1?'':'s'}</span>`:''}
             <span class="pill res-c">${resolvidas} resolvida${resolvidas===1?'':'s'}</span>
           </span>
+          <button class="btn btn-ghost btn-sm" data-action="edit-fornecedor" data-fid="${f.id}" title="Editar nome / classe">✎ Editar</button>
           <button class="btn btn-danger btn-sm" data-action="remove-fornecedor" data-fid="${f.id}" title="Remover fornecedor">Remover</button>
         </div>
         ${open?`<div class="sup-body"><div class="sup-body-inner">${body}</div></div>`:''}
@@ -1152,11 +1264,28 @@ function renderAll(){
 function findFornecedor(id){return state.fornecedores.find(f=>f.id===id);}
 
 function openAddSup(){
+  document.getElementById("sId").value="";
   document.getElementById("sNome").value="";
   document.getElementById("sClasse").value="A";
   document.getElementById("sNome").classList.remove("err");
+  document.getElementById("supModalTitle").textContent="Adicionar Fornecedor";
+  document.getElementById("btnSaveSup").textContent="Adicionar";
+  document.getElementById("supModalHint").textContent="O novo fornecedor será adicionado ao final da lista.";
   openModal("ovSup");
   setTimeout(()=>document.getElementById("sNome").focus(),50);
+}
+function openEditSup(fid){
+  const f=findFornecedor(fid);
+  if(!f) return;
+  document.getElementById("sId").value=f.id;
+  document.getElementById("sNome").value=f.nome;
+  document.getElementById("sClasse").value=f.classe;
+  document.getElementById("sNome").classList.remove("err");
+  document.getElementById("supModalTitle").textContent="Editar Fornecedor";
+  document.getElementById("btnSaveSup").textContent="Salvar Alterações";
+  document.getElementById("supModalHint").textContent="Altere o nome e/ou a classe do fornecedor.";
+  openModal("ovSup");
+  setTimeout(()=>document.getElementById("sClasse").focus(),50);
 }
 function saveSup(){
   const nomeEl=document.getElementById("sNome");
@@ -1164,14 +1293,25 @@ function saveSup(){
   if(!nome){nomeEl.classList.add("err");nomeEl.focus();return;}
   nomeEl.classList.remove("err");
   const classe=document.getElementById("sClasse").value;
-  const maxOrdem=state.fornecedores.reduce((m,f)=>Math.max(m,f.ordem),0);
-  const novo={id:uid(),nome:nome,classe:classe,ordem:maxOrdem+1,pendencias:[]};
-  state.fornecedores.push(novo);
-  ui.expanded.add(novo.id);
-  save();
-  closeModal("ovSup");
-  renderAll();
-  toast("✓ Fornecedor adicionado");
+  const sid=document.getElementById("sId").value;
+  if(sid){
+    const f=findFornecedor(sid);
+    if(!f) return;
+    f.nome=nome; f.classe=classe;
+    save();
+    closeModal("ovSup");
+    renderAll();
+    toast("✓ Fornecedor atualizado");
+  }else{
+    const maxOrdem=state.fornecedores.reduce((m,f)=>Math.max(m,f.ordem),0);
+    const novo={id:uid(),nome:nome,classe:classe,ordem:maxOrdem+1,pendencias:[]};
+    state.fornecedores.push(novo);
+    ui.expanded.add(novo.id);
+    save();
+    closeModal("ovSup");
+    renderAll();
+    toast("✓ Fornecedor adicionado");
+  }
 }
 function removeSup(fid){
   const f=findFornecedor(fid);
@@ -1307,10 +1447,45 @@ function exportCSV(){
 }
 
 /* ============ REBATE ============ */
+function metaEsperado(m){
+  if(m.percentual==null||m.compraPeriodo==null) return null;
+  return m.compraPeriodo * m.percentual / 100;
+}
+function metaRecebido(m){
+  return (m.recebimentos||[]).reduce((s,r)=>s+(Number(r.valor)||0),0);
+}
+function metaFalta(m){
+  const esp=metaEsperado(m);
+  if(esp==null) return null;
+  return esp - metaRecebido(m);
+}
+function labEsperado(lab){
+  let tot=0, any=false;
+  (lab.metas||[]).forEach(function(m){ const e=metaEsperado(m); if(e!=null){ tot+=e; any=true; } });
+  return any?tot:null;
+}
+function labRecebido(lab){
+  return (lab.metas||[]).reduce((s,m)=>s+metaRecebido(m),0);
+}
+function labFalta(lab){
+  let tot=0, any=false;
+  (lab.metas||[]).forEach(function(m){ const e=metaEsperado(m); if(e!=null){ tot+=Math.max(0,e-metaRecebido(m)); any=true; } });
+  return any?tot:null;
+}
 function rebateTotals(){
-  let entradas=0,saidas=0;
-  state.rebates.forEach(r=>{ if(r.tipo==="saida") saidas+=r.valor; else entradas+=r.valor; });
-  return {entradas:entradas,saidas:saidas,total:entradas-saidas};
+  let esperado=0, recebido=0, falta=0;
+  state.rebateLabs.forEach(function(lab){
+    const esp=labEsperado(lab);
+    recebido+=labRecebido(lab);
+    if(esp!=null){ esperado+=esp; falta+=labFalta(lab); }
+  });
+  return {esperado:esperado,recebido:recebido,falta:falta,labs:state.rebateLabs.length};
+}
+function fmtPeriodo(m){
+  if(m.inicio && m.fim) return fmtDate(m.inicio)+" até "+fmtDate(m.fim);
+  if(m.inicio) return "A partir de "+fmtDate(m.inicio);
+  if(m.fim) return "Até "+fmtDate(m.fim);
+  return "Período não definido";
 }
 
 function showView(v){
@@ -1324,8 +1499,6 @@ function showView(v){
 
 function renderRebate(){
   renderRebateStats();
-  populateRebateSelects();
-  renderRebateBreakdown();
   renderRebateList();
 }
 
@@ -1334,164 +1507,403 @@ function renderRebateStats(){
   document.getElementById("rebateStats").innerHTML=`
     <div class="stat rebate-total">
       <div class="stat-ico">💰</div>
-      <div><div class="stat-num">${fmtBRL(t.total)}</div><div class="stat-lbl">Rebate total da empresa</div></div>
+      <div><div class="stat-num">${fmtBRL(t.esperado)}</div><div class="stat-lbl">Rebate esperado (total)</div></div>
     </div>
     <div class="stat">
-      <div class="stat-ico g">➕</div>
-      <div><div class="stat-num green">${fmtBRL(t.entradas)}</div><div class="stat-lbl">Total de acréscimos</div></div>
+      <div class="stat-ico g">✅</div>
+      <div><div class="stat-num" style="color:#15803d">${fmtBRL(t.recebido)}</div><div class="stat-lbl">Rebate recebido (total)</div></div>
     </div>
     <div class="stat">
-      <div class="stat-ico r">➖</div>
-      <div><div class="stat-num red">${fmtBRL(t.saidas)}</div><div class="stat-lbl">Total de remoções</div></div>
+      <div class="stat-ico a">⏳</div>
+      <div><div class="stat-num" style="color:var(--amber)">${fmtBRL(t.falta)}</div><div class="stat-lbl">Falta receber</div></div>
     </div>
     <div class="stat">
-      <div class="stat-ico b">📊</div>
-      <div><div class="stat-num">${state.rebates.length}</div><div class="stat-lbl">Movimentações registradas</div></div>
+      <div class="stat-ico b">🏢</div>
+      <div><div class="stat-num">${t.labs}</div><div class="stat-lbl">Laboratórios cadastrados</div></div>
     </div>`;
 }
 
-function populateRebateSelects(){
+function populateLabSelect(){
   const sups=state.fornecedores.slice().sort((a,b)=>a.ordem-b.ordem);
-  const modal=document.getElementById("rLab");
-  const cur=modal.value;
-  modal.innerHTML=sups.map(f=>`<option value="${f.id}">${esc(f.nome)} — Classe ${f.classe}</option>`).join("");
-  if(cur && sups.some(f=>f.id===cur)) modal.value=cur;
-  const names=new Set(sups.map(f=>f.nome));
-  state.rebates.forEach(r=>names.add(r.fornecedorNome));
-  const sorted=Array.from(names).sort((a,b)=>a.localeCompare(b,"pt-BR"));
-  const filt=document.getElementById("rfLab");
-  filt.innerHTML='<option value="Todos">Todos os laboratórios</option>'+
-    sorted.map(n=>`<option value="${esc(n)}">${esc(n)}</option>`).join("");
-  filt.value = sorted.indexOf(ui.rebLab)>-1 ? ui.rebLab : "Todos";
-  ui.rebLab = filt.value;
+  document.getElementById("lLab").innerHTML=
+    sups.map(f=>`<option value="${f.id}">${esc(f.nome)} — Classe ${f.classe}</option>`).join("");
+}
+function fmtPerc(p){
+  if(p==null) return "—";
+  return Number(p).toLocaleString("pt-BR",{minimumFractionDigits:0,maximumFractionDigits:2})+"%";
+}
+function fmtNumInput(n){
+  return Number(n).toLocaleString("pt-BR",{minimumFractionDigits:2,maximumFractionDigits:2});
 }
 
-function renderRebateBreakdown(){
-  const el=document.getElementById("rebateBreakdown");
-  if(state.rebates.length===0){ el.innerHTML=""; return; }
-  const map={};
-  state.rebates.forEach(r=>{
-    const v=r.tipo==="saida"?-r.valor:r.valor;
-    if(!map[r.fornecedorNome]) map[r.fornecedorNome]={v:0,c:0};
-    map[r.fornecedorNome].v+=v; map[r.fornecedorNome].c++;
-  });
-  const arr=Object.keys(map).map(k=>({nome:k,v:map[k].v,c:map[k].c})).sort((a,b)=>b.v-a.v);
-  el.innerHTML=`<div class="panel">
-    <div class="panel-head">🏢 Rebate acumulado por laboratório</div>
-    ${arr.map(x=>`<div class="brk-row">
-      <span class="brk-name">${esc(x.nome)}</span>
-      <span class="brk-count">${x.c} mov.</span>
-      <span class="brk-val ${x.v<0?"neg":"pos"}">${fmtBRL(x.v)}</span>
-    </div>`).join("")}
-  </div>`;
-}
-
-function rebRow(r){
-  const saida=r.tipo==="saida";
-  return `<div class="reb-row ${r.tipo}">
-    <div class="reb-ico">${saida?"−":"+"}</div>
-    <div class="reb-main">
-      <div class="reb-l1">
-        <span class="reb-lab">${esc(r.fornecedorNome)}</span>
-        <span class="reb-tag ${r.tipo}">${saida?"Remoção":"Acréscimo"}</span>
-        <span class="reb-date">📅 ${fmtDate(r.data)}</span>
-      </div>
-      ${r.observacao?`<div class="reb-obs">📝 ${esc(r.observacao)}</div>`:""}
-    </div>
-    <div class="reb-val ${saida?"neg":"pos"}">${saida?"− ":"+ "}${fmtBRL(r.valor)}</div>
-    <button class="btn btn-danger btn-sm" data-action="del-rebate" data-rid="${r.id}" title="Excluir movimentação">🗑</button>
-  </div>`;
-}
-
-function renderRebateList(){
-  let list=state.rebates.slice();
-  if(ui.rebLab!=="Todos") list=list.filter(r=>r.fornecedorNome===ui.rebLab);
-  if(ui.rebTipo!=="Todos") list=list.filter(r=>r.tipo===ui.rebTipo);
-  list.sort((a,b)=>{
+function metaBlock(lab,m){
+  const esp=metaEsperado(m), rec=metaRecebido(m), falta=metaFalta(m);
+  const recs=(m.recebimentos||[]).slice().sort((a,b)=>{
     const d=(b.data||"").localeCompare(a.data||"");
     return d || (b.criadoEm||"").localeCompare(a.criadoEm||"");
   });
+  const pct=(esp!=null && esp>0)?Math.round(rec/esp*100):0;
+  const over=esp!=null && rec>esp+0.005;
+  const quitado=esp!=null && esp>0 && falta!=null && falta<=0.005;
+
+  let calc;
+  if(esp!=null){
+    const faltaZero=falta<=0.005;
+    calc=`
+      <div class="lab-figs">
+        <div class="lab-fig esperado"><div class="k">Meta de rebate</div><div class="v">${fmtBRL(esp)}</div></div>
+        <div class="lab-fig recebido"><div class="k">Recebido</div><div class="v">${fmtBRL(rec)}</div></div>
+        <div class="lab-fig falta ${faltaZero?'zero':''}"><div class="k">${falta<-0.005?'Recebido a mais':'Falta receber'}</div><div class="v">${fmtBRL(Math.abs(falta))}</div></div>
+      </div>
+      <div class="lab-prog">
+        <div class="lab-prog-bar"><div class="${over?'over':''}" style="width:${Math.min(100,Math.max(0,pct))}%"></div></div>
+        <div class="lab-prog-info"><span>${pct}% da meta recebido</span>${quitado?'<span class="ok">✓ Meta quitada</span>':(over?'<span class="ok">Recebido acima da meta</span>':'<span></span>')}</div>
+      </div>`;
+  }else{
+    calc=`
+      <div class="lab-figs">
+        <div class="lab-fig recebido"><div class="k">Recebido neste período</div><div class="v">${fmtBRL(rec)}</div></div>
+        <div class="lab-fig"><div class="k">Meta de rebate</div><div class="v muted">Informe % e compra</div></div>
+      </div>`;
+  }
+
+  const recList = recs.length
+    ? recs.map(r=>`<div class="lab-receb-item">
+        <span class="lab-receb-date">📅 ${fmtDate(r.data)}</span>
+        <span class="lab-receb-val">${fmtBRL(r.valor)}</span>
+        <span class="lab-receb-obs">${r.observacao?'📝 '+esc(r.observacao):''}</span>
+        <button class="btn btn-danger btn-sm" data-action="del-receb" data-lid="${lab.id}" data-mid="${m.id}" data-rid="${r.id}" title="Excluir recebimento">🗑</button>
+      </div>`).join("")
+    : `<div class="lab-receb-empty">Nenhum recebimento registrado neste período.</div>`;
+
+  return `
+    <div class="meta-block ${quitado?'quitado':''}">
+      <div class="meta-head">
+        <span class="meta-period">📆 ${fmtPeriodo(m)}</span>
+        <span class="meta-tag">${m.percentual==null?'%: —':fmtPerc(m.percentual)} · Compra: ${m.compraPeriodo==null?'—':fmtBRL(m.compraPeriodo)}</span>
+        <div class="meta-actions">
+          <button class="btn btn-ghost btn-sm" data-action="edit-meta" data-lid="${lab.id}" data-mid="${m.id}" title="Editar período">✎</button>
+          <button class="btn btn-danger btn-sm" data-action="del-meta" data-lid="${lab.id}" data-mid="${m.id}" title="Excluir período">🗑</button>
+        </div>
+      </div>
+      ${calc}
+      ${m.observacao?`<div class="lab-obs"><div>📝 ${esc(m.observacao)}</div></div>`:''}
+      <div class="lab-receb">
+        <div class="lab-receb-head">
+          <span>📥 Recebimentos (${recs.length})</span>
+          <button class="btn btn-primary btn-sm" data-action="add-receb" data-lid="${lab.id}" data-mid="${m.id}">+ Registrar recebimento</button>
+        </div>
+        ${recList}
+      </div>
+    </div>`;
+}
+
+function labCard(lab){
+  const espTot=labEsperado(lab), recTot=labRecebido(lab), faltaTot=labFalta(lab);
+  const metas=(lab.metas||[]).slice().sort((a,b)=>{
+    const ai=a.inicio||a.fim||"", bi=b.inicio||b.fim||"";
+    if(ai!==bi) return bi.localeCompare(ai);
+    return (b.criadoEm||"").localeCompare(a.criadoEm||"");
+  });
+  const classeBadge = lab.classe ? `<span class="badge ${lab.classe}">CLASSE ${lab.classe}</span>` : "";
+  const quitadoLab = espTot!=null && espTot>0 && faltaTot!=null && faltaTot<=0.005;
+
+  const summary = espTot!=null
+    ? `<span class="lab-sum">Rebate total: <b>${fmtBRL(espTot)}</b></span>
+       <span class="lab-sum green">Recebido: <b>${fmtBRL(recTot)}</b></span>
+       <span class="lab-sum amber">Falta: <b>${fmtBRL(faltaTot)}</b></span>
+       <span class="lab-sum">Períodos: <b>${metas.length}</b></span>`
+    : `<span class="lab-sum green">Recebido: <b>${fmtBRL(recTot)}</b></span>
+       <span class="lab-sum muted">Nenhuma meta definida ainda</span>`;
+
+  const metasHtml = metas.length
+    ? metas.map(m=>metaBlock(lab,m)).join("")
+    : `<div class="lab-receb-empty" style="padding:8px 16px 4px;">Nenhum período/meta cadastrado. Clique em "+ Novo período / meta" para definir a meta de rebate.</div>`;
+
+  return `
+    <div class="lab-card ${quitadoLab?'quitado':''}">
+      <div class="lab-head">
+        ${classeBadge}
+        <span class="lab-name">${esc(lab.nome)}</span>
+        <div class="lab-actions">
+          <button class="btn btn-ghost btn-sm" data-action="edit-lab" data-lid="${lab.id}">✎ Editar</button>
+          <button class="btn btn-danger btn-sm" data-action="del-lab" data-lid="${lab.id}">🗑 Excluir</button>
+        </div>
+      </div>
+      <div class="lab-summary">${summary}</div>
+      ${lab.observacao?`<div class="lab-obs"><div>📝 ${esc(lab.observacao)}</div></div>`:''}
+      <div class="meta-list">${metasHtml}</div>
+      <div class="lab-addmeta">
+        <button class="btn btn-primary btn-sm" data-action="add-meta" data-lid="${lab.id}">+ Novo período / meta</button>
+      </div>
+    </div>`;
+}
+
+function renderRebateList(){
+  const q=norm(ui.rebSearch||"");
+  let labs=state.rebateLabs.slice();
+  if(q) labs=labs.filter(l=>norm(l.nome).indexOf(q)>-1);
+  labs.sort((a,b)=>{
+    const ea=labEsperado(a), eb=labEsperado(b);
+    const va=ea==null?-1:ea, vb=eb==null?-1:eb;
+    if(vb!==va) return vb-va;   // maior rebate (meta) primeiro
+    return a.nome.localeCompare(b.nome,"pt-BR");
+  });
   const el=document.getElementById("rebateList");
   const info=document.getElementById("rebateInfo");
-  if(state.rebates.length===0){
+  if(state.rebateLabs.length===0){
     el.innerHTML=`<div class="no-result"><span class="ico">💰</span>
-      Nenhuma movimentação de rebate registrada.<br>Use o botão "Nova Movimentação" para adicionar um valor.</div>`;
+      Nenhum laboratório de rebate cadastrado.<br>Clique em "Cadastrar Laboratório" para começar — você pode preencher % e compra depois.</div>`;
     info.textContent="";
     return;
   }
-  el.innerHTML = list.length
-    ? list.map(rebRow).join("")
-    : `<div class="no-result"><span class="ico">🔍</span>Nenhuma movimentação corresponde aos filtros.</div>`;
-  info.textContent=`Exibindo ${list.length} de ${state.rebates.length} movimentação(ões)`;
+  el.innerHTML = labs.length
+    ? labs.map(labCard).join("")
+    : `<div class="no-result"><span class="ico">🔍</span>Nenhum laboratório encontrado para a busca.</div>`;
+  info.textContent=`Exibindo ${labs.length} de ${state.rebateLabs.length} laboratório(s) de rebate`;
 }
 
-function openRebateModal(){
-  if(state.fornecedores.length===0){ toast("⚠ Cadastre um fornecedor antes"); return; }
-  populateRebateSelects();
-  document.getElementById("rTipo").value="entrada";
-  document.getElementById("rLab").selectedIndex=0;
-  const vEl=document.getElementById("rValor");
+function findLab(lid){ return state.rebateLabs.find(l=>l.id===lid); }
+function findMeta(lab,mid){ return (lab.metas||[]).find(m=>m.id===mid); }
+
+function openLabModal(lid){
+  const editing=!!lid;
+  document.getElementById("labModalTitle").textContent=editing?"Editar Laboratório de Rebate":"Cadastrar Laboratório de Rebate";
+  document.getElementById("lId").value=lid||"";
+  const obsEl=document.getElementById("lObs");
+  const labFieldWrap=document.getElementById("lLabField");
+  const ctx=document.getElementById("lLabContext");
+  if(editing){
+    const lab=findLab(lid);
+    if(!lab) return;
+    labFieldWrap.style.display="none";
+    ctx.style.display="flex";
+    ctx.innerHTML=`🏢 <span>${esc(lab.nome)}${lab.classe?' — Classe '+lab.classe:''}</span>`;
+    obsEl.value = lab.observacao||"";
+    openModal("ovLab");
+    setTimeout(()=>obsEl.focus(),50);
+  }else{
+    if(state.fornecedores.length===0){ toast("⚠ Cadastre um fornecedor antes"); return; }
+    populateLabSelect();
+    labFieldWrap.style.display="";
+    ctx.style.display="none";
+    document.getElementById("lLab").selectedIndex=0;
+    obsEl.value="";
+    openModal("ovLab");
+    setTimeout(()=>document.getElementById("lLab").focus(),50);
+  }
+}
+
+function saveLab(){
+  const lid=document.getElementById("lId").value;
+  const obs=document.getElementById("lObs").value.trim();
+  if(lid){
+    const lab=findLab(lid);
+    if(!lab) return;
+    lab.observacao=obs;
+    toast("✓ Laboratório atualizado");
+  }else{
+    const fid=document.getElementById("lLab").value;
+    const f=findFornecedor(fid);
+    if(!f){ toast("⚠ Selecione um laboratório"); return; }
+    state.rebateLabs.push({
+      id:uid(), fornecedorId:f.id, nome:f.nome, classe:f.classe,
+      observacao:obs, metas:[], criadoEm:new Date().toISOString()
+    });
+    toast("✓ Laboratório cadastrado");
+  }
+  save();
+  closeModal("ovLab");
+  renderRebate();
+}
+
+function deleteLab(lid){
+  const lab=findLab(lid);
+  if(!lab) return;
+  const nm=(lab.metas||[]).length;
+  confirmar({
+    titulo:"Excluir laboratório de rebate",
+    msg:`Remover "${lab.nome}" do controle de rebate?`,
+    warn:nm>0?`Atenção: ${nm} período(s)/meta(s) e seus recebimentos também serão excluídos.`:"Esta ação não pode ser desfeita.",
+    okText:"Excluir laboratório",
+    onOk:()=>{
+      state.rebateLabs=state.rebateLabs.filter(l=>l.id!==lid);
+      save(); renderRebate(); toast("✓ Laboratório excluído");
+    }
+  });
+}
+
+function openMetaModal(lid,mid){
+  const lab=findLab(lid);
+  if(!lab) return;
+  const editing=!!mid;
+  document.getElementById("metaModalTitle").textContent=editing?"Editar Período / Meta":"Novo Período / Meta";
+  document.getElementById("mLabId").value=lid;
+  document.getElementById("mId").value=mid||"";
+  document.getElementById("mLabContext").innerHTML=`🏢 <span>${esc(lab.nome)}${lab.classe?' — Classe '+lab.classe:''}</span>`;
+  const ini=document.getElementById("mInicio"), fim=document.getElementById("mFim"),
+        perc=document.getElementById("mPerc"), compra=document.getElementById("mCompra"),
+        obs=document.getElementById("mObs");
+  perc.classList.remove("err"); compra.classList.remove("err"); fim.classList.remove("err");
+  if(editing){
+    const m=findMeta(lab,mid);
+    if(!m) return;
+    ini.value=m.inicio||""; fim.value=m.fim||"";
+    perc.value=m.percentual==null?"":String(m.percentual).replace(".",",");
+    compra.value=m.compraPeriodo==null?"":fmtNumInput(m.compraPeriodo);
+    obs.value=m.observacao||"";
+  }else{
+    ini.value=""; fim.value=""; perc.value=""; compra.value=""; obs.value="";
+  }
+  openModal("ovMeta");
+  setTimeout(()=>ini.focus(),50);
+}
+
+function saveMeta(){
+  const lid=document.getElementById("mLabId").value;
+  const mid=document.getElementById("mId").value;
+  const lab=findLab(lid);
+  if(!lab) return;
+  const ini=document.getElementById("mInicio").value||"";
+  const fimEl=document.getElementById("mFim");
+  const fim=fimEl.value||"";
+  if(ini && fim && fim<ini){ fimEl.classList.add("err"); toast("⚠ A data final deve ser igual ou posterior à inicial"); return; }
+  fimEl.classList.remove("err");
+  const percEl=document.getElementById("mPerc"), compraEl=document.getElementById("mCompra");
+  let perc=null, compra=null;
+  if(percEl.value.trim()!==""){
+    perc=parseValor(percEl.value);
+    if(isNaN(perc)||perc<0){ percEl.classList.add("err"); percEl.focus(); return; }
+  }
+  if(compraEl.value.trim()!==""){
+    compra=parseValor(compraEl.value);
+    if(isNaN(compra)||compra<0){ compraEl.classList.add("err"); compraEl.focus(); return; }
+  }
+  percEl.classList.remove("err"); compraEl.classList.remove("err");
+  const obs=document.getElementById("mObs").value.trim();
+  if(mid){
+    const m=findMeta(lab,mid);
+    if(!m) return;
+    m.inicio=ini; m.fim=fim; m.percentual=perc; m.compraPeriodo=compra; m.observacao=obs;
+    toast("✓ Período atualizado");
+  }else{
+    if(!Array.isArray(lab.metas)) lab.metas=[];
+    lab.metas.push({
+      id:uid(), inicio:ini, fim:fim, percentual:perc, compraPeriodo:compra,
+      observacao:obs, recebimentos:[], criadoEm:new Date().toISOString()
+    });
+    toast("✓ Período cadastrado");
+  }
+  save();
+  closeModal("ovMeta");
+  renderRebate();
+}
+
+function deleteMeta(lid,mid){
+  const lab=findLab(lid);
+  if(!lab) return;
+  const m=findMeta(lab,mid);
+  if(!m) return;
+  const n=(m.recebimentos||[]).length;
+  confirmar({
+    titulo:"Excluir período / meta",
+    msg:`Excluir o período "${fmtPeriodo(m)}"?`,
+    warn:n>0?`Atenção: ${n} recebimento(s) deste período também serão excluídos.`:"Esta ação não pode ser desfeita.",
+    okText:"Excluir período",
+    onOk:()=>{
+      lab.metas=lab.metas.filter(x=>x.id!==mid);
+      save(); renderRebate(); toast("✓ Período excluído");
+    }
+  });
+}
+
+function openRecebModal(lid,mid){
+  const lab=findLab(lid);
+  if(!lab) return;
+  const m=findMeta(lab,mid);
+  if(!m) return;
+  document.getElementById("cLabId").value=lid;
+  document.getElementById("cMetaId").value=mid;
+  document.getElementById("cLabContext").innerHTML=`🏢 <span>${esc(lab.nome)} &middot; 📆 ${fmtPeriodo(m)}</span>`;
+  const vEl=document.getElementById("cValor");
   vEl.value=""; vEl.classList.remove("err");
-  document.getElementById("rData").value=todayISO();
-  document.getElementById("rObs").value="";
-  openModal("ovRebate");
+  document.getElementById("cData").value=todayISO();
+  document.getElementById("cObs").value="";
+  openModal("ovReceb");
   setTimeout(()=>vEl.focus(),50);
 }
 
-function saveRebate(){
-  const tipo=document.getElementById("rTipo").value;
-  const fid=document.getElementById("rLab").value;
-  const f=findFornecedor(fid);
-  if(!f){ toast("⚠ Selecione um laboratório"); return; }
-  const valorEl=document.getElementById("rValor");
-  const valor=parseValor(valorEl.value);
-  if(isNaN(valor)||valor<=0){ valorEl.classList.add("err"); valorEl.focus(); return; }
-  valorEl.classList.remove("err");
-  state.rebates.push({
-    id:uid(), tipo:tipo, valor:Math.abs(valor),
-    fornecedorId:fid, fornecedorNome:f.nome,
-    observacao:document.getElementById("rObs").value.trim(),
-    data:document.getElementById("rData").value||todayISO(),
+function saveReceb(){
+  const lid=document.getElementById("cLabId").value;
+  const mid=document.getElementById("cMetaId").value;
+  const lab=findLab(lid);
+  if(!lab) return;
+  const m=findMeta(lab,mid);
+  if(!m) return;
+  const vEl=document.getElementById("cValor");
+  const valor=parseValor(vEl.value);
+  if(isNaN(valor)||valor<=0){ vEl.classList.add("err"); vEl.focus(); return; }
+  vEl.classList.remove("err");
+  if(!Array.isArray(m.recebimentos)) m.recebimentos=[];
+  m.recebimentos.push({
+    id:uid(), valor:Math.abs(valor),
+    data:document.getElementById("cData").value||todayISO(),
+    observacao:document.getElementById("cObs").value.trim(),
     criadoEm:new Date().toISOString()
   });
   save();
-  closeModal("ovRebate");
+  closeModal("ovReceb");
   renderRebate();
-  toast(tipo==="saida"?"✓ Remoção registrada no rebate":"✓ Acréscimo registrado no rebate");
+  toast("✓ Recebimento registrado");
 }
 
-function deleteRebate(rid){
-  const r=state.rebates.find(x=>x.id===rid);
+function deleteReceb(lid,mid,rid){
+  const lab=findLab(lid);
+  if(!lab) return;
+  const m=findMeta(lab,mid);
+  if(!m) return;
+  const r=(m.recebimentos||[]).find(x=>x.id===rid);
   if(!r) return;
   confirmar({
-    titulo:"Excluir movimentação",
-    msg:`Excluir a movimentação de ${fmtBRL(r.valor)} — ${r.fornecedorNome}?`,
-    warn:"Esta ação não pode ser desfeita e o rebate total será recalculado.",
-    okText:"Excluir movimentação",
+    titulo:"Excluir recebimento",
+    msg:`Excluir o recebimento de ${fmtBRL(r.valor)}?`,
+    warn:"Esta ação não pode ser desfeita.",
+    okText:"Excluir recebimento",
     onOk:()=>{
-      state.rebates=state.rebates.filter(x=>x.id!==rid);
-      save();
-      renderRebate();
-      toast("✓ Movimentação excluída");
+      m.recebimentos=m.recebimentos.filter(x=>x.id!==rid);
+      save(); renderRebate(); toast("✓ Recebimento excluído");
     }
   });
 }
 
 function exportRebateCSV(){
-  if(state.rebates.length===0){ toast("⚠ Nenhuma movimentação para exportar"); return; }
-  const headers=["Data","Tipo","Laboratório","Valor (R$)","Observação"];
-  const rows=state.rebates.slice().sort((a,b)=>{
-    const d=(b.data||"").localeCompare(a.data||"");
-    return d || (b.criadoEm||"").localeCompare(a.criadoEm||"");
-  }).map(r=>[
-    fmtDate(r.data),
-    r.tipo==="saida"?"Remoção":"Acréscimo",
-    r.fornecedorNome,
-    (r.tipo==="saida"?"-":"")+r.valor.toFixed(2).replace(".",","),
-    r.observacao||""
-  ]);
+  if(state.rebateLabs.length===0){ toast("⚠ Nenhum laboratório para exportar"); return; }
+  const headers=["Laboratório","Classe","Início do Período","Fim do Período","% Rebate","Compra no Período","Meta de Rebate","Recebido","Falta Receber","Observação"];
+  const num=n=>n==null?"":Number(n).toFixed(2).replace(".",",");
+  const rows=[];
+  state.rebateLabs.slice().sort((a,b)=>{
+    const ea=labEsperado(a), eb=labEsperado(b);
+    return (eb==null?-1:eb)-(ea==null?-1:ea);
+  }).forEach(function(lab){
+    const metas=(lab.metas||[]);
+    if(metas.length===0){
+      rows.push([lab.nome,lab.classe||"","","","","","","","",lab.observacao||""]);
+    }else{
+      metas.slice().sort((a,b)=>(a.inicio||"").localeCompare(b.inicio||"")).forEach(function(m){
+        const esp=metaEsperado(m), rec=metaRecebido(m), falta=metaFalta(m);
+        rows.push([
+          lab.nome, lab.classe||"",
+          m.inicio?fmtDate(m.inicio):"", m.fim?fmtDate(m.fim):"",
+          m.percentual==null?"":String(m.percentual).replace(".",","),
+          num(m.compraPeriodo), num(esp), num(rec),
+          falta==null?"":num(Math.max(0,falta)),
+          m.observacao||""
+        ]);
+      });
+    }
+  });
   const t=rebateTotals();
-  rows.push(["","","REBATE TOTAL DA EMPRESA",t.total.toFixed(2).replace(".",","),""]);
+  rows.push(["TOTAL","","","","","",num(t.esperado),num(t.recebido),num(t.falta),""]);
   const cell=v=>'"'+String(v==null?"":v).replace(/"/g,'""')+'"';
   const csv="﻿"+[headers].concat(rows).map(r=>r.map(cell).join(";")).join("\r\n");
   const blob=new Blob([csv],{type:"text/csv;charset=utf-8;"});
@@ -1500,7 +1912,7 @@ function exportRebateCSV(){
   a.href=url; a.download="rebate_clivapec_"+todayISO()+".csv";
   document.body.appendChild(a); a.click(); a.remove();
   setTimeout(()=>URL.revokeObjectURL(url),1000);
-  toast("✓ "+state.rebates.length+" movimentação(ões) exportada(s)");
+  toast("✓ "+state.rebateLabs.length+" laboratório(s) exportado(s)");
 }
 
 /* ============ AUTENTICAÇÃO ============ */
@@ -1591,6 +2003,7 @@ function bindEvents(){
     if(act==="toggle"){
       if(ui.expanded.has(fid)) ui.expanded.delete(fid); else ui.expanded.add(fid);
       renderSuppliers();
+    }else if(act==="edit-fornecedor"){ openEditSup(fid);
     }else if(act==="remove-fornecedor"){ removeSup(fid);
     }else if(act==="nova-pendencia"){ openPendModal(fid,null);
     }else if(act==="edit-pendencia"){ openPendModal(fid,pid);
@@ -1608,15 +2021,23 @@ function bindEvents(){
   });
 
   // rebate
-  document.getElementById("btnAddRebate").addEventListener("click",openRebateModal);
-  document.getElementById("btnSaveRebate").addEventListener("click",saveRebate);
+  document.getElementById("btnAddLab").addEventListener("click",function(){ openLabModal(null); });
+  document.getElementById("btnSaveLab").addEventListener("click",saveLab);
+  document.getElementById("btnSaveMeta").addEventListener("click",saveMeta);
+  document.getElementById("btnSaveReceb").addEventListener("click",saveReceb);
   document.getElementById("btnExportRebate").addEventListener("click",exportRebateCSV);
-  document.getElementById("rfLab").addEventListener("change",e=>{ui.rebLab=e.target.value;renderRebateList();});
-  document.getElementById("rfTipo").addEventListener("change",e=>{ui.rebTipo=e.target.value;renderRebateList();});
-  document.getElementById("rValor").addEventListener("keydown",e=>{ if(e.key==="Enter") saveRebate(); });
-  document.getElementById("rebateList").addEventListener("click",e=>{
+  document.getElementById("rebSearch").addEventListener("input",function(e){ ui.rebSearch=e.target.value; renderRebateList(); });
+  document.getElementById("cValor").addEventListener("keydown",function(e){ if(e.key==="Enter") saveReceb(); });
+  document.getElementById("rebateList").addEventListener("click",function(e){
     const el=e.target.closest("[data-action]"); if(!el) return;
-    if(el.dataset.action==="del-rebate") deleteRebate(el.dataset.rid);
+    const act=el.dataset.action, lid=el.dataset.lid, mid=el.dataset.mid, rid=el.dataset.rid;
+    if(act==="edit-lab") openLabModal(lid);
+    else if(act==="del-lab") deleteLab(lid);
+    else if(act==="add-meta") openMetaModal(lid,null);
+    else if(act==="edit-meta") openMetaModal(lid,mid);
+    else if(act==="del-meta") deleteMeta(lid,mid);
+    else if(act==="add-receb") openRecebModal(lid,mid);
+    else if(act==="del-receb") deleteReceb(lid,mid,rid);
   });
 
   // autenticação
