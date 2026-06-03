@@ -377,6 +377,40 @@
   }
   #toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
 
+  /* ---------- PREMIAÇÕES ---------- */
+  .camp-card{
+    background:var(--card);border:1px solid var(--border);border-radius:12px;
+    box-shadow:var(--shadow);margin-bottom:12px;border-left:5px solid var(--muted);
+    overflow:hidden;
+  }
+  .camp-card.ativa{border-left-color:#16a34a;}
+  .camp-card.embreve{border-left-color:var(--blue-2);}
+  .camp-card.encerrada{border-left-color:#9ca3af;}
+  .camp-card.encerrada .camp-title{color:var(--muted);}
+  .camp-head{display:flex;align-items:flex-start;gap:11px;padding:14px 16px 8px;flex-wrap:wrap;}
+  .camp-title{font-weight:700;font-size:15.5px;flex:1;min-width:180px;}
+  .camp-actions{display:flex;gap:7px;}
+  .camp-chip{font-size:11px;font-weight:800;padding:3px 11px;border-radius:20px;white-space:nowrap;letter-spacing:.3px;}
+  .camp-chip.ativa{background:#dcfce7;color:#15803d;}
+  .camp-chip.embreve{background:#dbeafe;color:#1d4ed8;}
+  .camp-chip.encerrada{background:#f1f3f1;color:var(--muted);}
+  .camp-meta-row{display:flex;flex-wrap:wrap;gap:6px 16px;padding:0 16px 10px;font-size:12.5px;color:var(--muted);}
+  .camp-meta-row .mi{display:flex;align-items:center;gap:5px;}
+  .camp-meta-row .mi.lab{color:var(--blue);font-weight:600;}
+  .camp-meta-row .urg{color:var(--amber);font-weight:700;}
+  .camp-prize{
+    margin:0 16px 10px;background:linear-gradient(100deg,#fff7e6,#fffdf7);
+    border:1px solid #fde9b8;border-radius:9px;padding:10px 13px;
+    display:flex;align-items:center;gap:11px;
+  }
+  .camp-prize .ico{font-size:22px;flex-shrink:0;}
+  .camp-prize .k{font-size:10.5px;font-weight:800;text-transform:uppercase;letter-spacing:.5px;color:#b45309;}
+  .camp-prize .v{font-size:14.5px;font-weight:800;color:#92400e;word-break:break-word;}
+  .camp-block{margin:0 16px 11px;}
+  .camp-block .k{font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.4px;color:var(--muted);margin-bottom:4px;display:flex;align-items:center;gap:5px;}
+  .camp-block .v{font-size:13px;color:#374151;white-space:pre-wrap;word-break:break-word;background:#f7f9fc;border:1px solid var(--border);border-radius:8px;padding:9px 11px;}
+  .camp-block.meta .v{background:#f0fbf4;border-color:#cdeed8;color:#15633a;font-weight:600;}
+
   /* ---------- LOGIN ---------- */
   .login-screen{
     position:fixed;inset:0;z-index:1000;
@@ -459,6 +493,7 @@
 <nav class="tabs">
   <button class="tab active" data-view="pendencias">&#128203;&nbsp; Pendências</button>
   <button class="tab" data-view="rebate">&#128176;&nbsp; Rebate</button>
+  <button class="tab" data-view="premiacoes">&#127942;&nbsp; Premiações</button>
 </nav>
 </div>
 
@@ -567,6 +602,32 @@
     </div>
     <div class="list-info" id="rebateInfo"></div>
     <div id="rebateList"></div>
+  </div>
+
+  <div id="viewPremiacoes" hidden>
+    <div class="stats" id="premStats"></div>
+    <div class="toolbar">
+      <div class="toolbar-row">
+        <button class="btn btn-primary" id="btnAddPrem">
+          <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+          Nova Campanha
+        </button>
+        <div class="seg" id="premFilter">
+          <button data-st="Todas" class="active">Todas</button>
+          <button data-st="Ativa">Ativas</button>
+          <button data-st="Em breve">Em breve</button>
+          <button data-st="Encerrada">Encerradas</button>
+        </div>
+        <div class="search" style="max-width:300px;">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+            <circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/>
+          </svg>
+          <input type="text" id="premSearch" placeholder="Pesquisar campanha...">
+        </div>
+      </div>
+    </div>
+    <div class="list-info" id="premInfo"></div>
+    <div id="premList"></div>
   </div>
 
 </div>
@@ -772,6 +833,57 @@
   </div>
 </div>
 
+<!-- MODAL PREMIAÇÃO / CAMPANHA -->
+<div class="overlay" id="ovPrem">
+  <div class="modal">
+    <div class="modal-head">
+      <h3 id="premModalTitle">Nova Campanha</h3>
+      <button class="modal-close" data-close="ovPrem">&times;</button>
+    </div>
+    <div class="modal-body">
+      <input type="hidden" id="prId">
+      <div class="form-grid">
+        <div class="field full">
+          <label>Nome da campanha <span class="req">*</span></label>
+          <input type="text" id="prTitulo" placeholder="Ex.: Campanha de Volume — Junho/2026">
+        </div>
+        <div class="field full">
+          <label>Laboratório / Origem</label>
+          <input type="text" id="prLab" placeholder="Ex.: Elanco, Ourofino... (opcional)">
+        </div>
+        <div class="field">
+          <label>Início</label>
+          <input type="date" id="prInicio">
+        </div>
+        <div class="field">
+          <label>Fim</label>
+          <input type="date" id="prFim">
+        </div>
+        <div class="field full">
+          <label>Premiação / Prêmio</label>
+          <input type="text" id="prPremio" placeholder="Ex.: Viagem, bônus de 2%, brindes...">
+        </div>
+        <div class="field full">
+          <label>Meta / Objetivo</label>
+          <input type="text" id="prMeta" placeholder="Ex.: Atingir R$ 50.000 em compras no mês">
+        </div>
+        <div class="field full">
+          <label>Regras da campanha</label>
+          <textarea id="prRegras" style="min-height:96px;" placeholder="Descreva as regras: como participar, critérios, faixas de premiação, prazos..."></textarea>
+        </div>
+        <div class="field full">
+          <label>Observações</label>
+          <textarea id="prObs" placeholder="Anotações adicionais..."></textarea>
+        </div>
+      </div>
+    </div>
+    <div class="modal-foot">
+      <button class="btn btn-ghost" data-close="ovPrem">Cancelar</button>
+      <button class="btn btn-primary" id="btnSavePrem">Salvar Campanha</button>
+    </div>
+  </div>
+</div>
+
 <!-- MODAL CONFIRMAÇÃO -->
 <div class="overlay" id="ovConfirm">
   <div class="modal sm">
@@ -950,7 +1062,8 @@ const ui = {
   search:"", classe:"Todos",
   status:"Todos", tipo:"Todos", prio:"Todos", venc:false, sort:"criacao",
   expanded:new Set(),
-  rebSearch:""
+  rebSearch:"",
+  premSearch:"", premStatus:"Todas"
 };
 
 /* ============ HELPERS ============ */
@@ -1016,6 +1129,7 @@ function load(){
       if(d && Array.isArray(d.fornecedores)){
         state=d;
         if(!Array.isArray(state.rebateLabs)) state.rebateLabs=[];
+        if(!Array.isArray(state.premiacoes)) state.premiacoes=[];
         if("rebates" in state) delete state.rebates;
         migrateRebateLabs();
         return;
@@ -1052,7 +1166,7 @@ function buildSeed(){
       arr.push({id:uid(),nome:nome,classe:cls,ordem:ordem++,pendencias:[]});
     });
   });
-  return {fornecedores:arr,rebateLabs:[]};
+  return {fornecedores:arr,rebateLabs:[],premiacoes:[]};
 }
 
 /* ============ TOAST ============ */
@@ -1492,8 +1606,10 @@ function showView(v){
   ui.view=v;
   document.getElementById("viewPendencias").hidden = v!=="pendencias";
   document.getElementById("viewRebate").hidden = v!=="rebate";
+  document.getElementById("viewPremiacoes").hidden = v!=="premiacoes";
   document.querySelectorAll(".tab").forEach(t=>t.classList.toggle("active",t.dataset.view===v));
   if(v==="rebate") renderRebate();
+  else if(v==="premiacoes") renderPremiacoes();
   window.scrollTo(0,0);
 }
 
@@ -1915,6 +2031,186 @@ function exportRebateCSV(){
   toast("✓ "+state.rebateLabs.length+" laboratório(s) exportado(s)");
 }
 
+/* ============ PREMIAÇÕES ============ */
+function campStatus(c){
+  const t=todayISO();
+  if(c.inicio && t < c.inicio) return "Em breve";
+  if(c.fim && t > c.fim) return "Encerrada";
+  return "Ativa";
+}
+function campCls(st){ return st==="Ativa"?"ativa":(st==="Em breve"?"embreve":"encerrada"); }
+function statusRank(s){ return s==="Ativa"?0:(s==="Em breve"?1:2); }
+function diffDays(aISO,bISO){
+  const a=new Date(aISO+"T00:00:00"), b=new Date(bISO+"T00:00:00");
+  return Math.round((b-a)/86400000);
+}
+
+function renderPremiacoes(){
+  renderPremStats();
+  renderPremList();
+}
+
+function renderPremStats(){
+  let ativas=0, embreve=0, enc=0;
+  (state.premiacoes||[]).forEach(function(c){
+    const s=campStatus(c);
+    if(s==="Ativa") ativas++; else if(s==="Em breve") embreve++; else enc++;
+  });
+  document.getElementById("premStats").innerHTML=`
+    <div class="stat rebate-total">
+      <div class="stat-ico">🏆</div>
+      <div><div class="stat-num">${ativas}</div><div class="stat-lbl">Campanhas ativas</div></div>
+    </div>
+    <div class="stat">
+      <div class="stat-ico b">🔜</div>
+      <div><div class="stat-num">${embreve}</div><div class="stat-lbl">Em breve</div></div>
+    </div>
+    <div class="stat">
+      <div class="stat-ico g">🏁</div>
+      <div><div class="stat-num">${enc}</div><div class="stat-lbl">Encerradas</div></div>
+    </div>
+    <div class="stat">
+      <div class="stat-ico a">📋</div>
+      <div><div class="stat-num">${(state.premiacoes||[]).length}</div><div class="stat-lbl">Total cadastradas</div></div>
+    </div>`;
+}
+
+function campCard(c,st){
+  const cls=campCls(st);
+  let periodo="Sem período definido";
+  if(c.inicio && c.fim) periodo=fmtDate(c.inicio)+" até "+fmtDate(c.fim);
+  else if(c.inicio) periodo="A partir de "+fmtDate(c.inicio);
+  else if(c.fim) periodo="Até "+fmtDate(c.fim);
+  let urg="";
+  const t=todayISO();
+  if(st==="Ativa" && c.fim){
+    const d=diffDays(t,c.fim);
+    urg = d<=0?"Encerra hoje":(d===1?"Encerra amanhã":"Encerra em "+d+" dias");
+  }else if(st==="Em breve" && c.inicio){
+    const d=diffDays(t,c.inicio);
+    urg = d<=0?"Começa hoje":(d===1?"Começa amanhã":"Começa em "+d+" dias");
+  }
+  return `
+    <div class="camp-card ${cls}">
+      <div class="camp-head">
+        <span class="camp-title">${esc(c.titulo||"(sem nome)")}</span>
+        <span class="camp-chip ${cls}">${st}</span>
+        <div class="camp-actions">
+          <button class="btn btn-ghost btn-sm" data-action="edit-prem" data-cid="${c.id}">✎ Editar</button>
+          <button class="btn btn-danger btn-sm" data-action="del-prem" data-cid="${c.id}">🗑 Excluir</button>
+        </div>
+      </div>
+      <div class="camp-meta-row">
+        ${c.laboratorio?`<span class="mi lab">🏢 ${esc(c.laboratorio)}</span>`:''}
+        <span class="mi">📆 ${periodo}</span>
+        ${urg?`<span class="mi urg">⏳ ${urg}</span>`:''}
+      </div>
+      ${c.premio?`<div class="camp-prize"><span class="ico">🏆</span><div><div class="k">Premiação</div><div class="v">${esc(c.premio)}</div></div></div>`:''}
+      ${c.meta?`<div class="camp-block meta"><div class="k">🎯 Meta / Objetivo</div><div class="v">${esc(c.meta)}</div></div>`:''}
+      ${c.regras?`<div class="camp-block"><div class="k">📋 Regras da campanha</div><div class="v">${esc(c.regras)}</div></div>`:''}
+      ${c.observacoes?`<div class="camp-block"><div class="k">📝 Observações</div><div class="v">${esc(c.observacoes)}</div></div>`:''}
+    </div>`;
+}
+
+function renderPremList(){
+  const q=norm(ui.premSearch||"");
+  let list=(state.premiacoes||[]).map(function(c){ return {c:c,st:campStatus(c)}; });
+  if(ui.premStatus!=="Todas") list=list.filter(x=>x.st===ui.premStatus);
+  if(q) list=list.filter(x=>norm(x.c.titulo||"").indexOf(q)>-1 || norm(x.c.laboratorio||"").indexOf(q)>-1);
+  list.sort(function(a,b){
+    const r=statusRank(a.st)-statusRank(b.st);
+    if(r) return r;
+    if(a.st==="Encerrada") return (b.c.fim||"").localeCompare(a.c.fim||"");  // encerradas: mais recentes primeiro
+    const af=a.c.fim||a.c.inicio||"9999-12-31", bf=b.c.fim||b.c.inicio||"9999-12-31";
+    if(af!==bf) return af<bf?-1:1;                                          // ativas/em breve: termina/começa antes primeiro
+    return (b.c.criadoEm||"").localeCompare(a.c.criadoEm||"");
+  });
+  const el=document.getElementById("premList");
+  const info=document.getElementById("premInfo");
+  if((state.premiacoes||[]).length===0){
+    el.innerHTML=`<div class="no-result"><span class="ico">🏆</span>
+      Nenhuma campanha cadastrada.<br>Clique em "Nova Campanha" para registrar as premiações ativas e suas regras.</div>`;
+    info.textContent="";
+    return;
+  }
+  el.innerHTML = list.length
+    ? list.map(x=>campCard(x.c,x.st)).join("")
+    : `<div class="no-result"><span class="ico">🔍</span>Nenhuma campanha encontrada para o filtro/busca.</div>`;
+  info.textContent=`Exibindo ${list.length} de ${(state.premiacoes||[]).length} campanha(s)`;
+}
+
+function openPremModal(cid){
+  const editing=!!cid;
+  document.getElementById("premModalTitle").textContent=editing?"Editar Campanha":"Nova Campanha";
+  document.getElementById("btnSavePrem").textContent=editing?"Salvar Alterações":"Salvar Campanha";
+  document.getElementById("prId").value=cid||"";
+  const tEl=document.getElementById("prTitulo");
+  tEl.classList.remove("err");
+  document.getElementById("prFim").classList.remove("err");
+  const c = editing ? (state.premiacoes||[]).find(x=>x.id===cid) : null;
+  if(editing && !c) return;
+  tEl.value = c?(c.titulo||""):"";
+  document.getElementById("prLab").value = c?(c.laboratorio||""):"";
+  document.getElementById("prInicio").value = c?(c.inicio||""):"";
+  document.getElementById("prFim").value = c?(c.fim||""):"";
+  document.getElementById("prPremio").value = c?(c.premio||""):"";
+  document.getElementById("prMeta").value = c?(c.meta||""):"";
+  document.getElementById("prRegras").value = c?(c.regras||""):"";
+  document.getElementById("prObs").value = c?(c.observacoes||""):"";
+  openModal("ovPrem");
+  setTimeout(()=>tEl.focus(),50);
+}
+
+function savePrem(){
+  const cid=document.getElementById("prId").value;
+  const tEl=document.getElementById("prTitulo");
+  const titulo=tEl.value.trim();
+  if(!titulo){ tEl.classList.add("err"); tEl.focus(); return; }
+  tEl.classList.remove("err");
+  const ini=document.getElementById("prInicio").value||"";
+  const fimEl=document.getElementById("prFim");
+  const fim=fimEl.value||"";
+  if(ini && fim && fim<ini){ fimEl.classList.add("err"); toast("⚠ A data final deve ser igual ou posterior à inicial"); return; }
+  fimEl.classList.remove("err");
+  const dados={
+    titulo:titulo,
+    laboratorio:document.getElementById("prLab").value.trim(),
+    inicio:ini, fim:fim,
+    premio:document.getElementById("prPremio").value.trim(),
+    meta:document.getElementById("prMeta").value.trim(),
+    regras:document.getElementById("prRegras").value.trim(),
+    observacoes:document.getElementById("prObs").value.trim()
+  };
+  if(!Array.isArray(state.premiacoes)) state.premiacoes=[];
+  if(cid){
+    const c=state.premiacoes.find(x=>x.id===cid);
+    if(!c) return;
+    Object.assign(c,dados);
+    toast("✓ Campanha atualizada");
+  }else{
+    state.premiacoes.push(Object.assign({id:uid(),criadoEm:new Date().toISOString()},dados));
+    toast("✓ Campanha cadastrada");
+  }
+  save();
+  closeModal("ovPrem");
+  renderPremiacoes();
+}
+
+function deletePrem(cid){
+  const c=(state.premiacoes||[]).find(x=>x.id===cid);
+  if(!c) return;
+  confirmar({
+    titulo:"Excluir campanha",
+    msg:`Excluir a campanha "${c.titulo||'(sem nome)'}"?`,
+    warn:"Esta ação não pode ser desfeita.",
+    okText:"Excluir campanha",
+    onOk:()=>{
+      state.premiacoes=state.premiacoes.filter(x=>x.id!==cid);
+      save(); renderPremiacoes(); toast("✓ Campanha excluída");
+    }
+  });
+}
+
 /* ============ AUTENTICAÇÃO ============ */
 function isAuthed(){
   try{ return sessionStorage.getItem(AUTH_KEY)==="1"; }catch(e){ return false; }
@@ -2038,6 +2334,24 @@ function bindEvents(){
     else if(act==="del-meta") deleteMeta(lid,mid);
     else if(act==="add-receb") openRecebModal(lid,mid);
     else if(act==="del-receb") deleteReceb(lid,mid,rid);
+  });
+
+  // premiações
+  document.getElementById("btnAddPrem").addEventListener("click",function(){ openPremModal(null); });
+  document.getElementById("btnSavePrem").addEventListener("click",savePrem);
+  document.getElementById("prTitulo").addEventListener("keydown",function(e){ if(e.key==="Enter") savePrem(); });
+  document.getElementById("premSearch").addEventListener("input",function(e){ ui.premSearch=e.target.value; renderPremList(); });
+  document.getElementById("premFilter").addEventListener("click",function(e){
+    const b=e.target.closest("button"); if(!b) return;
+    ui.premStatus=b.dataset.st;
+    document.querySelectorAll("#premFilter button").forEach(x=>x.classList.toggle("active",x===b));
+    renderPremList();
+  });
+  document.getElementById("premList").addEventListener("click",function(e){
+    const el=e.target.closest("[data-action]"); if(!el) return;
+    const act=el.dataset.action, cid=el.dataset.cid;
+    if(act==="edit-prem") openPremModal(cid);
+    else if(act==="del-prem") deletePrem(cid);
   });
 
   // autenticação
